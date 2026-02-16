@@ -1,229 +1,464 @@
-# Skill Pips Frontend - Setup Guide
+# Skill Pips Backend API
 
-## 📦 What's Included
+Complete Node.js backend for the Skill Pips trading education platform with Stripe subscriptions, crypto payments, and Telegram bot integration.
 
-This package contains a complete, production-ready frontend for your Skill Pips trading education platform.
+## 🚀 Features
 
-### Files:
-- **index.html** - Home/Landing page
-- **pricing.html** - Pricing page with all plans
-- **checkout.html** - Checkout page with Stripe & Crypto payment
-- **login.html** - Member login page
-- **dashboard.html** - Member dashboard
-- **terms.html** - Terms of Service
-- **privacy.html** - Privacy Policy
-- **disclaimer.html** - Risk Disclaimer
-- **styles.css** - Complete stylesheet (dark premium theme)
-- **script.js** - JavaScript for interactivity
+- ✅ User authentication (JWT)
+- ✅ Stripe payment processing & subscriptions
+- ✅ Cryptocurrency payments (NOWPayments)
+- ✅ Telegram bot for VIP group management
+- ✅ Automated subscription expiry checks
+- ✅ Email notifications (SendGrid/SMTP)
+- ✅ PostgreSQL database
+- ✅ RESTful API endpoints
+- ✅ Webhook handling (Stripe & Crypto)
+- ✅ Cron jobs for automation
 
-## 🎨 Design Features
+## 📦 Tech Stack
 
-✅ Premium dark theme with gradient accents
-✅ Fully responsive (mobile, tablet, desktop)
-✅ Smooth animations and transitions
-✅ Professional card-based layouts
-✅ Interactive elements and hover effects
-✅ SEO-friendly semantic HTML
+- **Runtime:** Node.js 18+
+- **Framework:** Express.js
+- **Database:** PostgreSQL
+- **Authentication:** JWT
+- **Payments:** Stripe, NOWPayments
+- **Bot:** Telegram Bot API
+- **Email:** SendGrid / SMTP
 
-## 🚀 Quick Start
+## 🛠️ Installation
 
-### Option 1: Local Testing
-1. Extract all files to a folder
-2. Open `index.html` in your browser
-3. Navigate through the site to test
+### 1. Prerequisites
 
-### Option 2: Deploy to Vercel (Recommended)
-1. Create a GitHub repository
-2. Push all files to the repo
-3. Connect to Vercel
-4. Deploy instantly (free tier available)
+```bash
+# Install Node.js 18+ and npm
+node --version  # Should be v18+
+npm --version
 
-## ⚙️ Backend Integration Required
-
-These files need to connect to your backend API. You'll need to update:
-
-### 1. Checkout Page (checkout.html)
-```javascript
-// Line 280: Update with your Stripe publishable key
-const stripe = Stripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY');
-
-// Line 350: Update API endpoint
-const response = await fetch('/api/create-payment-intent', {
-    // Your backend endpoint
-});
-
-// Line 400: Update crypto payment endpoint
-const response = await fetch('/api/create-crypto-payment', {
-    // Your backend endpoint
-});
+# Install PostgreSQL
+# Mac: brew install postgresql
+# Ubuntu: sudo apt-get install postgresql
+# Windows: Download from postgresql.org
 ```
 
-### 2. Login Page (login.html)
-```javascript
-// Line 105: Update login endpoint
-const response = await fetch('/api/login', {
-    // Your backend endpoint
-});
+### 2. Clone & Install Dependencies
 
-// Line 150: Update forgot password endpoint
-const response = await fetch('/api/forgot-password', {
-    // Your backend endpoint
-});
+```bash
+cd backend
+npm install
 ```
 
-### 3. Dashboard (dashboard.html)
-```javascript
-// Line 180: Update dashboard data endpoint
-const response = await fetch('/api/user/dashboard', {
-    // Your backend endpoint
-});
+### 3. Environment Setup
+
+Copy `.env.example` to `.env` and fill in your credentials:
+
+```bash
+cp .env.example .env
+nano .env  # or use your preferred editor
 ```
 
-## 🔧 Customization Guide
+**Required Environment Variables:**
 
-### Colors
-Edit `styles.css` at the top:
-```css
-:root {
-    --primary-color: #00d4ff;  /* Change main accent color */
-    --secondary-color: #7b2cbf; /* Change secondary color */
-    --bg-dark: #0f0f1e;         /* Change background */
-}
+```env
+# Database
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=skillpips
+DB_USER=postgres
+DB_PASSWORD=your_secure_password
+
+# JWT Secret (generate with: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))")
+JWT_SECRET=your_generated_secret_here
+
+# Stripe
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+
+# Telegram
+TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_VIP_GROUP_ID=-1001234567890
+
+# Email (choose one)
+SENDGRID_API_KEY=SG.xxx  # Recommended
+# OR
+SMTP_HOST=smtp.gmail.com
+SMTP_USER=your@email.com
+SMTP_PASSWORD=your_app_password
 ```
 
-### Logo
-Replace emoji logos with your actual logo:
-- Update `.logo-icon` sections in HTML files
-- Or replace with `<img>` tag pointing to your logo file
+### 4. Database Setup
 
-### Content
-- Update all placeholder text
-- Add your actual testimonials
-- Update contact emails (support@skillpips.com)
-- Update Telegram links
+```bash
+# Create database
+createdb skillpips
 
-### Legal Pages
-**CRITICAL:** Have a lawyer review:
-- terms.html
-- privacy.html  
-- disclaimer.html
+# Run migrations
+npm run migrate
 
-Update jurisdictions, company details, and contact information.
+# (Optional) Seed test data
+npm run seed
+```
 
-## 📱 Payment Integration
+### 5. Start Server
+
+```bash
+# Development (with auto-reload)
+npm run dev
+
+# Production
+npm start
+```
+
+Server will start on `http://localhost:5000`
+
+## 📁 Project Structure
+
+```
+backend/
+├── server.js                 # Main entry point
+├── package.json             # Dependencies
+├── .env                     # Environment variables
+├── database/
+│   ├── db.js               # PostgreSQL connection
+│   ├── migrate.js          # Database schema
+│   └── seed.js             # Test data (optional)
+├── routes/
+│   ├── auth.js             # Login, register, password reset
+│   ├── user.js             # User profile, dashboard
+│   ├── stripe.js           # Stripe payments
+│   ├── crypto.js           # Crypto payments
+│   └── webhooks.js         # Payment webhooks
+├── services/
+│   ├── telegram.js         # Telegram bot logic
+│   ├── email.js            # Email sending
+│   └── subscriptions.js    # Subscription management
+└── middleware/
+    └── auth.js             # JWT authentication
+```
+
+## 🔧 Configuration
 
 ### Stripe Setup
-1. Get API keys from https://dashboard.stripe.com/apikeys
-2. Update `pk_test_...` in checkout.html
-3. Configure webhook endpoint in Stripe dashboard
-4. Test with Stripe test cards
+
+1. **Get API Keys**
+   - Go to https://dashboard.stripe.com/apikeys
+   - Copy Secret Key to `STRIPE_SECRET_KEY`
+   - Copy Publishable Key (for frontend)
+
+2. **Create Products & Prices**
+   ```
+   Products to create in Stripe Dashboard:
+   - Gold Foundations ($14.80)
+   - Execution Blueprint ($45.00)
+   - VIP Execution Room ($39/month recurring)
+   - Everything Bundle ($69 first, then $39/month)
+   ```
+
+3. **Setup Webhooks**
+   - Go to https://dashboard.stripe.com/webhooks
+   - Add endpoint: `https://your-domain.com/api/webhooks/stripe`
+   - Select events:
+     - `payment_intent.succeeded`
+     - `invoice.paid`
+     - `invoice.payment_failed`
+     - `customer.subscription.created`
+     - `customer.subscription.updated`
+     - `customer.subscription.deleted`
+   - Copy webhook secret to `STRIPE_WEBHOOK_SECRET`
 
 ### NOWPayments Setup
+
 1. Register at https://nowpayments.io/
-2. Get API key
-3. Configure callback URLs
-4. Test with testnet first
+2. Get API key from dashboard
+3. Set IPN callback: `https://your-domain.com/api/webhooks/nowpayments`
+4. Copy API key to `NOWPAYMENTS_API_KEY`
+5. Copy IPN secret to `NOWPAYMENTS_IPN_SECRET`
+
+### Telegram Bot Setup
+
+1. **Create Bot**
+   ```
+   1. Message @BotFather on Telegram
+   2. Send /newbot
+   3. Follow instructions
+   4. Copy token to TELEGRAM_BOT_TOKEN
+   ```
+
+2. **Create VIP Group**
+   ```
+   1. Create a Telegram group
+   2. Add your bot as admin
+   3. Give permissions: Invite users, Ban users
+   4. Get group ID (use @getidsbot)
+   5. Copy ID to TELEGRAM_VIP_GROUP_ID
+   ```
+
+### Email Setup (Choose One)
+
+**Option A: SendGrid (Recommended)**
+```bash
+1. Sign up at https://sendgrid.com
+2. Create API key
+3. Set SENDGRID_API_KEY in .env
+```
+
+**Option B: Gmail SMTP**
+```bash
+1. Enable 2FA on your Gmail account
+2. Generate App Password
+3. Set SMTP_HOST, SMTP_USER, SMTP_PASSWORD in .env
+```
 
 ## 🔐 Security Checklist
 
-Before going live:
-- [ ] Replace all test API keys with production keys
+Before going to production:
+
+- [ ] Change all default passwords
+- [ ] Use production Stripe keys (not test keys)
 - [ ] Enable HTTPS (SSL certificate)
-- [ ] Implement CSRF protection on backend
-- [ ] Add rate limiting to prevent abuse
-- [ ] Test all payment flows thoroughly
-- [ ] Verify webhook signatures
-- [ ] Enable Stripe webhook signing
-- [ ] Review and update all legal pages
+- [ ] Set strong JWT_SECRET (64+ random characters)
+- [ ] Configure firewall (allow only necessary ports)
+- [ ] Set up database backups
+- [ ] Enable rate limiting (already configured)
+- [ ] Review CORS origins
+- [ ] Set NODE_ENV=production
+- [ ] Never commit .env file to git
 
-## 📊 SEO Optimization
+## 🚀 Deployment
 
-Add to each HTML `<head>`:
-```html
-<meta name="description" content="Your page description">
-<meta property="og:title" content="Skill Pips">
-<meta property="og:description" content="Master trading execution">
-<meta property="og:image" content="URL to preview image">
+### Option 1: DigitalOcean (Recommended)
+
+1. **Create Droplet**
+   ```bash
+   # Ubuntu 22.04, minimum $12/month
+   ```
+
+2. **Setup Server**
+   ```bash
+   ssh root@your-server-ip
+   
+   # Install Node.js
+   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+   sudo apt-get install -y nodejs
+   
+   # Install PostgreSQL
+   sudo apt-get install postgresql postgresql-contrib
+   
+   # Install PM2
+   npm install -g pm2
+   ```
+
+3. **Deploy Code**
+   ```bash
+   git clone your-repo
+   cd backend
+   npm install --production
+   cp .env.example .env
+   nano .env  # Fill in production values
+   ```
+
+4. **Start with PM2**
+   ```bash
+   npm run migrate  # Setup database
+   pm2 start server.js --name skillpips-api
+   pm2 startup  # Auto-start on reboot
+   pm2 save
+   ```
+
+5. **Setup Nginx Reverse Proxy**
+   ```nginx
+   server {
+       listen 80;
+       server_name api.skillpips.com;
+       
+       location / {
+           proxy_pass http://localhost:5000;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection 'upgrade';
+           proxy_set_header Host $host;
+           proxy_cache_bypass $http_upgrade;
+       }
+   }
+   ```
+
+6. **SSL Certificate**
+   ```bash
+   sudo apt-get install certbot python3-certbot-nginx
+   sudo certbot --nginx -d api.skillpips.com
+   ```
+
+### Option 2: Railway (Easiest)
+
+1. Go to https://railway.app
+2. Connect GitHub repo
+3. Add PostgreSQL database
+4. Set environment variables
+5. Deploy automatically
+
+## 📊 API Endpoints
+
+### Authentication
+```
+POST   /api/auth/register          # Register new user
+POST   /api/auth/login             # Login
+POST   /api/auth/forgot-password   # Request password reset
+POST   /api/auth/reset-password    # Reset password
 ```
 
-## 🎯 Next Steps
-
-1. **Backend Development** - Build the Node.js/Express backend per architecture doc
-2. **Database Setup** - Create PostgreSQL tables
-3. **Telegram Bot** - Configure and deploy bot
-4. **Testing** - Test all user flows end-to-end
-5. **Legal Review** - Have lawyer review all legal pages
-6. **Launch** - Deploy to production with monitoring
-
-## 📞 Support Structure
-
-Set up these email addresses:
-- support@skillpips.com (customer support)
-- legal@skillpips.com (legal inquiries)
-- privacy@skillpips.com (data/privacy requests)
-- dpo@skillpips.com (data protection officer)
-
-## 🚨 Important Notes
-
-### Stripe Compliance
-- Risk disclaimer MUST be visible and accepted before payment
-- Clear cancellation policy required
-- No guarantees or exaggerated claims
-- Educational purpose must be clearly stated
-
-### Crypto Payments
-- Non-refundable policy must be very clear
-- Blockchain confirmation times should be communicated
-- Manual renewal requirements must be explained
-
-### Legal Protection
-- All three legal pages (Terms, Privacy, Disclaimer) are REQUIRED
-- Users must acknowledge disclaimer before purchase
-- Keep records of user acceptances
-
-## 🔗 Useful Links
-
-- Stripe Documentation: https://stripe.com/docs
-- NOWPayments API: https://documenter.getpostman.com/view/7907941/S1a32n38
-- Vercel Deployment: https://vercel.com/docs
-- Telegram Bot API: https://core.telegram.org/bots/api
-
-## 📝 File Structure for Deployment
-
+### User
 ```
-your-project/
-├── index.html
-├── pricing.html
-├── checkout.html
-├── login.html
-├── dashboard.html
-├── terms.html
-├── privacy.html
-├── disclaimer.html
-├── styles.css
-├── script.js
-└── assets/ (create this folder)
-    ├── logo.png
-    ├── favicon.ico
-    └── images/
+GET    /api/user/dashboard         # Get dashboard data
+GET    /api/user/subscription      # Get subscription details
+POST   /api/user/update-telegram   # Update Telegram username
+GET    /api/user/activity          # Get activity log
 ```
 
-## ✅ Pre-Launch Checklist
+### Payments
+```
+POST   /api/stripe/create-payment-intent     # Create payment
+POST   /api/stripe/create-subscription       # Create subscription
+POST   /api/stripe/cancel-subscription       # Cancel subscription
+GET    /api/stripe/customer-portal           # Get portal link
 
-- [ ] All API endpoints configured
-- [ ] Payment gateways tested (Stripe + Crypto)
-- [ ] Legal pages reviewed by lawyer
-- [ ] SSL certificate installed
-- [ ] Email system configured
-- [ ] Telegram bot deployed
-- [ ] Database backups configured
-- [ ] Monitoring/analytics setup
-- [ ] Support system ready
-- [ ] Beta test with real users
+POST   /api/crypto/create-payment            # Create crypto payment
+GET    /api/crypto/payment-status/:id        # Check payment status
+```
+
+### Webhooks
+```
+POST   /api/webhooks/stripe                  # Stripe webhooks
+POST   /api/webhooks/nowpayments             # Crypto webhooks
+```
+
+## 🤖 Telegram Bot Commands
+
+Users can use these commands in Telegram:
+
+- `/start` - Welcome message
+- `/status` - Check subscription status
+- `/renew` - Get renewal link
+- `/support` - Contact support
+- `/verify <payment_id>` - Verify crypto payment
+
+## 📈 Monitoring
+
+### View Logs
+```bash
+# PM2 logs
+pm2 logs skillpips-api
+
+# Database connections
+psql -U postgres -d skillpips -c "SELECT COUNT(*) FROM users;"
+```
+
+### Check Health
+```bash
+curl http://localhost:5000/health
+```
+
+### Subscription Stats
+```javascript
+// Add this endpoint to server.js for admin dashboard
+const { getSubscriptionStats } = require('./services/subscriptions');
+
+app.get('/api/admin/stats', requireAdmin, async (req, res) => {
+  const stats = await getSubscriptionStats();
+  res.json(stats);
+});
+```
+
+## 🔄 Cron Jobs
+
+The server automatically runs these jobs:
+
+- **Daily at 12:00 AM UTC** - Check expired subscriptions
+- **Daily at 6:00 AM UTC** - Send renewal reminders
+
+Jobs are configured in `server.js` using `node-cron`.
+
+## 🧪 Testing
+
+```bash
+# Test database connection
+node -e "require('./database/db').pool.query('SELECT NOW()').then(r => console.log('✅ DB OK:', r.rows[0]))"
+
+# Test email
+node -e "require('./services/email').testEmailConfig()"
+
+# Test Stripe connection
+node -e "const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); stripe.customers.list({limit: 1}).then(() => console.log('✅ Stripe OK'))"
+```
+
+## 🐛 Troubleshooting
+
+### Database Connection Issues
+```bash
+# Check if PostgreSQL is running
+sudo service postgresql status
+
+# Test connection
+psql -U postgres -d skillpips -c "SELECT 1;"
+```
+
+### Telegram Bot Not Responding
+```bash
+# Check bot token
+curl https://api.telegram.org/bot<YOUR_TOKEN>/getMe
+
+# Check if bot is admin in group
+# Add bot to group and make it admin
+```
+
+### Webhook Not Working
+```bash
+# Test webhook locally with ngrok
+ngrok http 5000
+
+# Use ngrok URL in Stripe/NOWPayments webhook settings
+# Example: https://abc123.ngrok.io/api/webhooks/stripe
+```
+
+## 📝 Development
+
+### Add New Endpoint
+```javascript
+// routes/example.js
+const express = require('express');
+const router = express.Router();
+const { authenticateToken } = require('../middleware/auth');
+
+router.get('/test', authenticateToken, async (req, res) => {
+  res.json({ message: 'Hello!', user: req.user });
+});
+
+module.exports = router;
+
+// Add to server.js
+app.use('/api/example', require('./routes/example'));
+```
+
+### Database Query Example
+```javascript
+const { query } = require('./database/db');
+
+const result = await query(
+  'SELECT * FROM users WHERE email = $1',
+  ['user@example.com']
+);
+console.log(result.rows);
+```
+
+## 🆘 Support
+
+- **Email:** dev@skillpips.com
+- **Issues:** GitHub Issues
+- **Docs:** See comments in code files
+
+## 📄 License
+
+MIT
 
 ---
 
-**Built for Skill Pips** | Premium Trading Education Platform
-**Version:** 1.0.0 | **Date:** February 2025
-
-For backend integration, refer to the full business process document.
+**Built for Skill Pips** | Professional Trading Education Platform  
+**Version:** 1.0.0 | **Node.js:** 18+ | **PostgreSQL:** 14+
