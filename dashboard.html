@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Skill Pips</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Dashboard Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">📈</span>
+                    <span class="logo-text">SKILL PIPS</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-user">
+                        <span id="userEmail">Loading...</span>
+                    </a>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Welcome back, <span id="userName">Member</span>! 👋</h1>
+                <p>Manage your subscription and access your content</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Subscription Status Card -->
+                <div class="dashboard-card subscription-card">
+                    <div class="card-header">
+                        <h2>Subscription Status</h2>
+                        <span class="status-badge" id="statusBadge">Active</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="subscription-info">
+                            <div class="info-item">
+                                <span class="info-label">Plan</span>
+                                <span class="info-value" id="planName">VIP Execution Room</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Payment Method</span>
+                                <span class="info-value" id="paymentMethod">Stripe (Card)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Started</span>
+                                <span class="info-value" id="startDate">Jan 15, 2025</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Next Billing</span>
+                                <span class="info-value" id="nextBilling">Feb 15, 2025</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Days Remaining</span>
+                                <span class="info-value days-remaining" id="daysRemaining">15 days</span>
+                            </div>
+                        </div>
+
+                        <div class="subscription-actions">
+                            <button class="btn-secondary" onclick="manageSubscription()">
+                                Manage Subscription
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Access Card -->
+                <div class="dashboard-card access-card">
+                    <div class="card-header">
+                        <h2>Quick Access</h2>
+                    </div>
+                    <div class="card-content">
+                        <a href="https://t.me/skillpips_vip" class="access-link" target="_blank">
+                            <div class="access-icon">💬</div>
+                            <div class="access-info">
+                                <h3>VIP Telegram Group</h3>
+                                <p>Join the community</p>
+                            </div>
+                            <div class="access-arrow">→</div>
+                        </a>
+
+                        <div class="access-link disabled" id="foundationsAccess">
+                            <div class="access-icon">📚</div>
+                            <div class="access-info">
+                                <h3>Gold Foundations</h3>
+                                <p id="foundationsStatus">Not purchased</p>
+                            </div>
+                            <div class="access-arrow">→</div>
+                        </div>
+
+                        <div class="access-link disabled" id="blueprintAccess">
+                            <div class="access-icon">🎯</div>
+                            <div class="access-info">
+                                <h3>Execution Blueprint</h3>
+                                <p id="blueprintStatus">Not purchased</p>
+                            </div>
+                            <div class="access-arrow">→</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Info Card -->
+                <div class="dashboard-card account-card">
+                    <div class="card-header">
+                        <h2>Account Information</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="account-info">
+                            <div class="info-item">
+                                <span class="info-label">Email</span>
+                                <span class="info-value" id="accountEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="750006100735100d14180519105b161a18">[email&#160;protected]</a></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Telegram ID</span>
+                                <span class="info-value" id="telegramId">@username</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Member Since</span>
+                                <span class="info-value" id="memberSince">Jan 15, 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="account-actions">
+                            <button class="btn-outline" onclick="changePassword()">
+                                Change Password
+                            </button>
+                            <button class="btn-outline" onclick="updateTelegram()">
+                                Update Telegram
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Purchase History Card -->
+                <div class="dashboard-card history-card">
+                    <div class="card-header">
+                        <h2>Purchase History</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="history-list" id="historyList">
+                            <!-- Dynamically populated -->
+                            <div class="history-item">
+                                <div class="history-date">Jan 15, 2025</div>
+                                <div class="history-description">VIP Execution Room - Monthly</div>
+                                <div class="history-amount">$39.00</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-date">Jan 15, 2025</div>
+                                <div class="history-description">Everything Bundle - Initial</div>
+                                <div class="history-amount">$69.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Card -->
+                <div class="dashboard-card support-card">
+                    <div class="card-header">
+                        <h2>Need Help?</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Our support team is here to help you succeed</p>
+                        <div class="support-options">
+                            <a href="/cdn-cgi/l/email-protection#2f5c5a5f5f405d5b6f5c444643435f465f5c014c4042" class="support-link">
+                                <span>📧</span> Email Support
+                            </a>
+                            <a href="https://t.me/skillpips_support" class="support-link" target="_blank">
+                                <span>💬</span> Telegram Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Renewal Warning (shown when close to expiry) -->
+            <div id="renewalWarning" class="renewal-warning" style="display: none;">
+                <div class="warning-content">
+                    <div class="warning-icon">⚠️</div>
+                    <div class="warning-text">
+                        <h3>Subscription Expiring Soon</h3>
+                        <p>Your subscription will expire in <span id="warningDays">3</span> days. Renew now to keep your access.</p>
+                    </div>
+                    <button class="btn-primary" onclick="renewSubscription()">Renew Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Skill Pips. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Check if user is logged in
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Fetch user data
+        async function loadUserData() {
+            try {
+                const response = await fetch('/api/user/dashboard', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user data');
+                }
+
+                const data = await response.json();
+
+                // Update UI with user data
+                document.getElementById('userName').textContent = data.name || 'Member';
+                document.getElementById('userEmail').textContent = data.email;
+                document.getElementById('accountEmail').textContent = data.email;
+                document.getElementById('planName').textContent = data.subscription.plan;
+                document.getElementById('paymentMethod').textContent = data.subscription.paymentMethod;
+                document.getElementById('startDate').textContent = formatDate(data.subscription.startDate);
+                document.getElementById('nextBilling').textContent = formatDate(data.subscription.expiryDate);
+                document.getElementById('memberSince').textContent = formatDate(data.createdAt);
+
+                // Calculate days remaining
+                const daysLeft = calculateDaysRemaining(data.subscription.expiryDate);
+                document.getElementById('daysRemaining').textContent = `${daysLeft} days`;
+
+                // Update status badge
+                const statusBadge = document.getElementById('statusBadge');
+                if (data.subscription.status === 'active') {
+                    statusBadge.textContent = 'Active';
+                    statusBadge.className = 'status-badge active';
+                } else if (data.subscription.status === 'expired') {
+                    statusBadge.textContent = 'Expired';
+                    statusBadge.className = 'status-badge expired';
+                } else {
+                    statusBadge.textContent = 'Pending';
+                    statusBadge.className = 'status-badge pending';
+                }
+
+                // Show renewal warning if close to expiry
+                if (daysLeft <= 7 && daysLeft > 0) {
+                    document.getElementById('renewalWarning').style.display = 'block';
+                    document.getElementById('warningDays').textContent = daysLeft;
+                }
+
+                // Update course access
+                if (data.courses.includes('foundations')) {
+                    const foundationsLink = document.getElementById('foundationsAccess');
+                    foundationsLink.classList.remove('disabled');
+                    foundationsLink.href = '/courses/foundations';
+                    document.getElementById('foundationsStatus').textContent = 'Access granted';
+                }
+
+                if (data.courses.includes('blueprint')) {
+                    const blueprintLink = document.getElementById('blueprintAccess');
+                    blueprintLink.classList.remove('disabled');
+                    blueprintLink.href = '/courses/blueprint';
+                    document.getElementById('blueprintStatus').textContent = 'Access granted';
+                }
+
+                // Update Telegram info
+                if (data.telegramUsername) {
+                    document.getElementById('telegramId').textContent = '@' + data.telegramUsername;
+                } else {
+                    document.getElementById('telegramId').textContent = 'Not connected';
+                }
+
+                // Load purchase history
+                loadPurchaseHistory(data.purchases);
+
+            } catch (err) {
+                console.error('Error loading user data:', err);
+                // If token invalid, redirect to login
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function calculateDaysRemaining(expiryDate) {
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            const diffTime = expiry - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays > 0 ? diffDays : 0;
+        }
+
+        function loadPurchaseHistory(purchases) {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+
+            purchases.forEach(purchase => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                item.innerHTML = `
+                    <div class="history-date">${formatDate(purchase.date)}</div>
+                    <div class="history-description">${purchase.description}</div>
+                    <div class="history-amount">$${purchase.amount.toFixed(2)}</div>
+                `;
+                historyList.appendChild(item);
+            });
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+
+        function manageSubscription() {
+            // For Stripe users, redirect to customer portal
+            window.open('https://billing.stripe.com/p/login/YOUR_PORTAL_LINK', '_blank');
+        }
+
+        function renewSubscription() {
+            window.location.href = 'pricing.html';
+        }
+
+        function changePassword() {
+            // Implement password change modal
+            alert('Password change feature coming soon!');
+        }
+
+        function updateTelegram() {
+            // Implement Telegram update modal
+            const newUsername = prompt('Enter your Telegram username (without @):');
+            if (newUsername) {
+                // Send to backend
+                fetch('/api/user/update-telegram', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ telegram: newUser

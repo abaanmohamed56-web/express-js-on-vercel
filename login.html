@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Login - Skill Pips</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-icon">📈</span>
+                        <span class="logo-text">SKILL PIPS</span>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="pricing.html">Pricing</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-header">
+                        <h1>Welcome Back</h1>
+                        <p>Access your member dashboard</p>
+                    </div>
+
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="rememberMe">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password" onclick="showForgotPassword()">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn-login">
+                            <span id="loginButtonText">Sign In</span>
+                            <span id="loginSpinner" class="spinner" style="display: none;"></span>
+                        </button>
+
+                        <div id="loginError" class="error-message" style="display: none;"></div>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Don't have an account? <a href="pricing.html">Join Now</a></p>
+                    </div>
+                </div>
+
+                <!-- Forgot Password Modal -->
+                <div id="forgotPasswordModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Reset Password</h2>
+                            <button class="modal-close" onclick="closeForgotPassword()">&times;</button>
+                        </div>
+                        <form id="forgotPasswordForm">
+                            <div class="form-group">
+                                <label>Enter your email address</label>
+                                <input type="email" id="resetEmail" placeholder="your@email.com" required>
+                                <small>We'll send you a password reset link</small>
+                            </div>
+                            <button type="submit" class="btn-primary">Send Reset Link</button>
+                        </form>
+                        <div id="resetSuccess" class="success-message" style="display: none;">
+                            Check your email for the reset link!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Skill Pips. All rights reserved.</p>
+                <p class="disclaimer-text">Need help? Email <a href="mailto:support@skillpips.com">support@skillpips.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const submitButton = event.target.querySelector('button[type="submit"]');
+            const buttonText = document.getElementById('loginButtonText');
+            const spinner = document.getElementById('loginSpinner');
+            const errorDiv = document.getElementById('loginError');
+
+            submitButton.disabled = true;
+            buttonText.textContent = 'Signing in...';
+            spinner.style.display = 'inline-block';
+            errorDiv.style.display = 'none';
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store JWT token
+                    localStorage.setItem('token', data.token);
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                } else {
+                    errorDiv.textContent = data.message || 'Invalid email or password';
+                    errorDiv.style.display = 'block';
+                    submitButton.disabled = false;
+                    buttonText.textContent = 'Sign In';
+                    spinner.style.display = 'none';
+                }
+            } catch (err) {
+                console.error('Login error:', err);
+                errorDiv.textContent = 'An error occurred. Please try again.';
+                errorDiv.style.display = 'block';
+                submitButton.disabled = false;
+                buttonText.textContent = 'Sign In';
+                spinner.style.display = 'none';
+            }
+        });
+
+        // Forgot password modal
+        function showForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'flex';
+        }
+
+        function closeForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+            document.getElementById('resetSuccess').style.display = 'none';
+        }
+
+        // Handle forgot password form
+        document.getElementById('forgotPasswordForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('resetEmail').value;
+
+            try {
+                const response = await fetch('/api/forgot-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                if (response.ok) {
+                    document.getElementById('forgotPasswordForm').style.display = 'none';
+                    document.getElementById('resetSuccess').style.display = 'block';
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Failed to send reset link. Please try again.');
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('forgotPasswordModal');
+            if (event.target === modal) {
+                closeForgotPassword();
+            }
+        }
+    </script>
+</body>
+</html>

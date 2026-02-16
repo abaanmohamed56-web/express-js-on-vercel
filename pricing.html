@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Skill Pips</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-icon">📈</span>
+                        <span class="logo-text">SKILL PIPS</span>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#testimonials">Success Stories</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="login.html" class="nav-login">Login</a>
+                </div>
+                <div class="mobile-menu-btn">☰</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Hero -->
+    <section class="pricing-hero">
+        <div class="container">
+            <h1>Choose Your Path to Mastery</h1>
+            <p>Flexible options designed for every stage of your trading journey</p>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="pricing-section">
+        <div class="container">
+            <!-- Individual Products -->
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">📚</div>
+                        <h3>Gold Foundations</h3>
+                        <p class="pricing-desc">Master the fundamentals</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$14.80</span>
+                        <span class="price-period">one-time payment</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Complete foundation course</li>
+                        <li>✓ Risk management basics</li>
+                        <li>✓ Trading psychology modules</li>
+                        <li>✓ Market structure education</li>
+                        <li>✓ Lifetime access</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPlan('foundations')">Get Started</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">🎯</div>
+                        <h3>Execution Blueprint</h3>
+                        <p class="pricing-desc">Advanced strategies</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$45.00</span>
+                        <span class="price-period">one-time payment</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Professional execution tactics</li>
+                        <li>✓ Entry & exit strategies</li>
+                        <li>✓ Position sizing formulas</li>
+                        <li>✓ Trade management system</li>
+                        <li>✓ Lifetime access</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPlan('blueprint')">Get Started</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">👑</div>
+                        <h3>VIP Execution Room</h3>
+                        <p class="pricing-desc">Exclusive community</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$39</span>
+                        <span class="price-period">per month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Private Telegram community</li>
+                        <li>✓ Daily market analysis</li>
+                        <li>✓ Live trade setups</li>
+                        <li>✓ Direct mentor support</li>
+                        <li>✓ Member networking</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPlan('vip')">Start Membership</button>
+                </div>
+            </div>
+
+            <!-- Bundle Offer -->
+            <div class="bundle-section">
+                <div class="bundle-card">
+                    <div class="bundle-badge">🔥 BEST VALUE - SAVE $29.80</div>
+                    <div class="bundle-content">
+                        <div class="bundle-left">
+                            <h2>Everything Bundle</h2>
+                            <p class="bundle-subtitle">Get all courses + VIP membership in one package</p>
+                            <ul class="bundle-includes">
+                                <li>✓ Gold Foundations Course ($14.80)</li>
+                                <li>✓ Execution Blueprint Course ($45.00)</li>
+                                <li>✓ VIP Execution Room Access ($39/mo)</li>
+                            </ul>
+                            <div class="bundle-value">
+                                <div class="original-price">Regular Price: $98.80</div>
+                                <div class="bundle-savings">You Save: $29.80 in first month</div>
+                            </div>
+                        </div>
+                        <div class="bundle-right">
+                            <div class="bundle-pricing">
+                                <div class="bundle-first-month">
+                                    <div class="bundle-label">First Month</div>
+                                    <div class="bundle-amount">$69</div>
+                                    <div class="bundle-details">All courses + VIP access</div>
+                                </div>
+                                <div class="bundle-arrow">→</div>
+                                <div class="bundle-recurring">
+                                    <div class="bundle-label">Then Monthly</div>
+                                    <div class="bundle-amount">$39</div>
+                                    <div class="bundle-details">VIP access continues</div>
+                                </div>
+                            </div>
+                            <button class="btn-bundle" onclick="selectPlan('bundle')">Get Everything Bundle</button>
+                            <p class="bundle-note">Cancel anytime. Courses are yours forever.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+                <h3>Secure Payment Options</h3>
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <div class="payment-icon">💳</div>
+                        <div class="payment-info">
+                            <h4>Credit & Debit Cards</h4>
+                            <p>Instant access • Secure by Stripe • Auto-renewal</p>
+                        </div>
+                    </div>
+                    <div class="payment-option">
+                        <div class="payment-icon">🪙</div>
+                        <div class="payment-info">
+                            <h4>Cryptocurrency (USDT)</h4>
+                            <p>TRC20 network • Manual renewal • Non-refundable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>Can I cancel anytime?</h4>
+                        <p>Yes, cancel anytime from your member dashboard. One-time course purchases are non-refundable as you get immediate access.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What happens after I pay?</h4>
+                        <p>You'll receive instant access to course materials and a Telegram invite link to join the VIP group within minutes.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Do I need trading experience?</h4>
+                        <p>No! Our Gold Foundations course starts from the basics. The VIP room welcomes all skill levels.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Is this financial advice?</h4>
+                        <p>No. All content is educational only. We do not provide financial advice or trading signals. See our full disclaimer.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How does crypto payment work?</h4>
+                        <p>Pay with USDT on TRC20 network. Access granted after blockchain confirmation (usually 5-10 minutes). Manual renewal required monthly.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What if I have issues?</h4>
+                        <p>Contact support@skillpips.com or reach us on Telegram. We respond within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-content">
+                <h3>🛡️ Your Investment is Protected</h3>
+                <div class="trust-items">
+                    <div class="trust-item">✓ Secure Payment Processing</div>
+                    <div class="trust-item">✓ Instant Access Delivery</div>
+                    <div class="trust-item">✓ Educational Content Only</div>
+                    <div class="trust-item">✓ Cancel Anytime (VIP)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">📈</span>
+                        <span class="logo-text">SKILL PIPS</span>
+                    </div>
+                    <p>Professional trading education and execution strategies for serious traders.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="login.html">Member Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Risk Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@skillpips.com">support@skillpips.com</a></li>
+                        <li><a href="https://t.me/skillpips">Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Skill Pips. All rights reserved.</p>
+                <p class="disclaimer-text">Trading involves substantial risk of loss. Educational content only. Not financial advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
