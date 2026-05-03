@@ -3,8 +3,18 @@ const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 
 if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         navLinks.classList.toggle('active');
+    });
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') &&
+            !navLinks.contains(e.target) &&
+            e.target !== mobileMenuBtn) {
+            navLinks.classList.remove('active');
+        }
     });
 }
 
@@ -14,17 +24,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
 
-// Plan Selection Function (called from pricing page)
+// Plan Selection Function — validate against known plans before navigating
+const VALID_PLANS = ['foundations', 'blueprint', 'vip', 'bundle'];
 function selectPlan(plan) {
-    window.location.href = `checkout.html?plan=${plan}`;
+    const safePlan = VALID_PLANS.includes(plan) ? plan : 'vip';
+    window.location.href = `checkout.html?plan=${encodeURIComponent(safePlan)}`;
 }
 
 // Add subtle animations on scroll
@@ -42,7 +51,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card');
     animatedElements.forEach(el => {
@@ -64,26 +72,18 @@ function setButtonLoading(button, isLoading) {
     if (isLoading) {
         button.disabled = true;
         button.dataset.originalText = button.textContent;
-        button.innerHTML = '<span class="spinner"></span> Processing...';
+        button.textContent = 'Processing...';
     } else {
         button.disabled = false;
         button.textContent = button.dataset.originalText;
     }
 }
 
-// Local storage helper for auth token
-const auth = {
-    getToken: () => localStorage.getItem('authToken'),
-    setToken: (token) => localStorage.setItem('authToken', token),
-    removeToken: () => localStorage.removeItem('authToken'),
-    isAuthenticated: () => !!localStorage.getItem('authToken')
-};
-
 // Notification system
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    notification.textContent = message;
+    notification.textContent = message; // textContent — safe against XSS
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -95,9 +95,9 @@ function showNotification(message, type = 'success') {
         z-index: 10000;
         animation: slideIn 0.3s ease;
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => notification.remove(), 300);
@@ -108,27 +108,13 @@ function showNotification(message, type = 'success') {
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+        from { transform: translateX(400px); opacity: 0; }
+        to   { transform: translateX(0);     opacity: 1; }
     }
-    
     @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
+        from { transform: translateX(0);     opacity: 1; }
+        to   { transform: translateX(400px); opacity: 0; }
     }
-    
     @media (max-width: 768px) {
         .nav-links.active {
             display: flex;
@@ -145,7 +131,3 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-
-// Console welcome message
-console.log('%c🔥 SKILL PIPS', 'color: #00d4ff; font-size: 24px; font-weight: bold;');
-console.log('%cWelcome to Skill Pips! Master trading execution.', 'color: #888; font-size: 12px;');

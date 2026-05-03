@@ -1,21 +1,23 @@
 // middleware/auth.js
-const jwt = require(‘jsonwebtoken’);
+const jwt = require('jsonwebtoken');
 
 function authenticateToken(req, res, next) {
-const authHeader = req.headers[‘authorization’];
-const token = authHeader && authHeader.split(’ ’)[1]; // Bearer TOKEN
+  // Prefer httpOnly cookie, fall back to Authorization header for API clients
+  const token = req.cookies?.token ||
+    (req.headers['authorization']?.startsWith('Bearer ')
+      ? req.headers['authorization'].slice(7)
+      : null);
 
-if (!token) {
-return res.status(401).json({ error: ‘Access token required’ });
-}
+  if (!token) {
+    return res.status(401).json({ error: 'Access token required' });
+  }
 
-try {
-const user = jwt.verify(token, process.env.JWT_SECRET);
-req.user = user;
-next();
-} catch (err) {
-return res.status(403).json({ error: ‘Invalid or expired token’ });
-}
+  try {
+    req.user = jwt.verify(token, process.env.JWT_SECRET);
+    next();
+  } catch {
+    return res.status(403).json({ error: 'Invalid or expired token' });
+  }
 }
 
 module.exports = { authenticateToken };

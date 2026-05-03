@@ -76,6 +76,19 @@ await client.query(`
 `);
 console.log('  ✅ payment_logs');
 
+// ── Password reset tokens table ──
+await client.query(`
+  CREATE TABLE IF NOT EXISTS password_reset_tokens (
+    id         UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id    UUID        REFERENCES users(id) ON DELETE CASCADE,
+    token      TEXT        NOT NULL UNIQUE,
+    expires_at TIMESTAMPTZ NOT NULL,
+    used       BOOLEAN     DEFAULT FALSE,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+  );
+`);
+console.log('  ✅ password_reset_tokens');
+
 // ── Indexes ──
 await client.query(`
   CREATE INDEX IF NOT EXISTS idx_vip_expiry

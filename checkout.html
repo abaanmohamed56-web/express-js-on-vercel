@@ -235,9 +235,11 @@
             }
         });
 
-        // Get plan from URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectedPlan = urlParams.get('plan') || 'vip';
+        // Get plan from URL parameter — validate against known plans
+        const VALID_PLANS = ['foundations', 'blueprint', 'vip', 'bundle'];
+        const urlParams    = new URLSearchParams(window.location.search);
+        const rawPlan      = urlParams.get('plan') || 'vip';
+        const selectedPlan = VALID_PLANS.includes(rawPlan) ? rawPlan : 'vip';
 
         const plans = {
             foundations: {

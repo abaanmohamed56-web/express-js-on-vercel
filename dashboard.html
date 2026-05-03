@@ -203,43 +203,64 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Check if user is logged in
-        const token = localStorage.getItem('token');
-        if (!token) {
-            window.location.href = 'login.html';
+    <style>
+        .skeleton {
+            background: linear-gradient(90deg, #1c1c28 25%, #2e2e42 50%, #1c1c28 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+            border-radius: 4px;
+            color: transparent !important;
+            pointer-events: none;
+        }
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    <script>
+        function showSkeletons() {
+            ['userName','userEmail','accountEmail','planName','paymentMethod',
+             'startDate','nextBilling','daysRemaining','memberSince','telegramId'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) { el.classList.add('skeleton'); el.textContent = 'Loading...'; }
+            });
         }
 
-        // Fetch user data
+        function clearSkeletons() {
+            document.querySelectorAll('.skeleton').forEach(el => el.classList.remove('skeleton'));
+        }
+
+        showSkeletons();
+
         async function loadUserData() {
             try {
                 const response = await fetch('/api/user/dashboard', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
+                    credentials: 'include',
                 });
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data');
+                // 401 means no valid session — redirect to login
+                if (response.status === 401 || response.status === 403) {
+                    window.location.href = 'login.html';
+                    return;
                 }
 
+                if (!response.ok) throw new Error('Failed to fetch user data');
+
                 const data = await response.json();
+                clearSkeletons();
 
-                // Update UI with user data
-                document.getElementById('userName').textContent = data.name || 'Member';
-                document.getElementById('userEmail').textContent = data.email;
+                document.getElementById('userName').textContent     = data.name || 'Member';
+                document.getElementById('userEmail').textContent    = data.email;
                 document.getElementById('accountEmail').textContent = data.email;
-                document.getElementById('planName').textContent = data.subscription.plan;
+                document.getElementById('planName').textContent     = data.subscription.plan;
                 document.getElementById('paymentMethod').textContent = data.subscription.paymentMethod;
-                document.getElementById('startDate').textContent = formatDate(data.subscription.startDate);
-                document.getElementById('nextBilling').textContent = formatDate(data.subscription.expiryDate);
-                document.getElementById('memberSince').textContent = formatDate(data.createdAt);
+                document.getElementById('startDate').textContent    = formatDate(data.subscription.startDate);
+                document.getElementById('nextBilling').textContent  = formatDate(data.subscription.expiryDate);
+                document.getElementById('memberSince').textContent  = formatDate(data.createdAt);
 
-                // Calculate days remaining
                 const daysLeft = calculateDaysRemaining(data.subscription.expiryDate);
                 document.getElementById('daysRemaining').textContent = `${daysLeft} days`;
 
-                // Update status badge
                 const statusBadge = document.getElementById('statusBadge');
                 if (data.subscription.status === 'active') {
                     statusBadge.textContent = 'Active';
@@ -252,77 +273,81 @@
                     statusBadge.className = 'status-badge pending';
                 }
 
-                // Show renewal warning if close to expiry
                 if (daysLeft <= 7 && daysLeft > 0) {
                     document.getElementById('renewalWarning').style.display = 'block';
                     document.getElementById('warningDays').textContent = daysLeft;
                 }
 
-                // Update course access
-                if (data.courses.includes('foundations')) {
-                    const foundationsLink = document.getElementById('foundationsAccess');
-                    foundationsLink.classList.remove('disabled');
-                    foundationsLink.href = '/courses/foundations';
+                if (data.courses && data.courses.includes('foundations')) {
+                    const el = document.getElementById('foundationsAccess');
+                    el.classList.remove('disabled');
+                    el.href = '/courses/foundations';
                     document.getElementById('foundationsStatus').textContent = 'Access granted';
                 }
 
-                if (data.courses.includes('blueprint')) {
-                    const blueprintLink = document.getElementById('blueprintAccess');
-                    blueprintLink.classList.remove('disabled');
-                    blueprintLink.href = '/courses/blueprint';
+                if (data.courses && data.courses.includes('blueprint')) {
+                    const el = document.getElementById('blueprintAccess');
+                    el.classList.remove('disabled');
+                    el.href = '/courses/blueprint';
                     document.getElementById('blueprintStatus').textContent = 'Access granted';
                 }
 
-                // Update Telegram info
-                if (data.telegramUsername) {
-                    document.getElementById('telegramId').textContent = '@' + data.telegramUsername;
-                } else {
-                    document.getElementById('telegramId').textContent = 'Not connected';
-                }
+                document.getElementById('telegramId').textContent = data.telegramUsername
+                    ? '@' + data.telegramUsername
+                    : 'Not connected';
 
-                // Load purchase history
-                loadPurchaseHistory(data.purchases);
+                loadPurchaseHistory(data.purchases || []);
 
             } catch (err) {
                 console.error('Error loading user data:', err);
-                // If token invalid, redirect to login
-                localStorage.removeItem('token');
                 window.location.href = 'login.html';
             }
         }
 
         function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            if (!dateString) return '—';
+            return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         }
 
         function calculateDaysRemaining(expiryDate) {
-            const today = new Date();
-            const expiry = new Date(expiryDate);
-            const diffTime = expiry - today;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            return diffDays > 0 ? diffDays : 0;
+            if (!expiryDate) return 0;
+            const diffMs = new Date(expiryDate) - new Date();
+            return Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
         }
 
         function loadPurchaseHistory(purchases) {
             const historyList = document.getElementById('historyList');
             historyList.innerHTML = '';
-
+            if (!purchases.length) {
+                historyList.textContent = 'No purchases yet.';
+                return;
+            }
             purchases.forEach(purchase => {
                 const item = document.createElement('div');
                 item.className = 'history-item';
-                item.innerHTML = `
-                    <div class="history-date">${formatDate(purchase.date)}</div>
-                    <div class="history-description">${purchase.description}</div>
-                    <div class="history-amount">$${purchase.amount.toFixed(2)}</div>
-                `;
+                // Use textContent nodes to avoid XSS
+                const dateEl = document.createElement('div');
+                dateEl.className = 'history-date';
+                dateEl.textContent = formatDate(purchase.date);
+                const descEl = document.createElement('div');
+                descEl.className = 'history-description';
+                descEl.textContent = purchase.description;
+                const amtEl = document.createElement('div');
+                amtEl.className = 'history-amount';
+                amtEl.textContent = `$${Number(purchase.amount).toFixed(2)}`;
+                item.appendChild(dateEl);
+                item.appendChild(descEl);
+                item.appendChild(amtEl);
                 historyList.appendChild(item);
             });
         }
 
-        function logout() {
-            localStorage.removeItem('token');
-            window.location.href = 'login.html';
+        async function logout() {
+            try {
+                await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+            } finally {
+                window.location.href = 'login.html';
+            }
         }
 
         function manageSubscription() {

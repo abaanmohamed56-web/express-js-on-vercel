@@ -107,52 +107,48 @@
             event.preventDefault();
 
             const submitButton = event.target.querySelector('button[type="submit"]');
-            const buttonText = document.getElementById('loginButtonText');
-            const spinner = document.getElementById('loginSpinner');
-            const errorDiv = document.getElementById('loginError');
+            const buttonText   = document.getElementById('loginButtonText');
+            const spinner      = document.getElementById('loginSpinner');
+            const errorDiv     = document.getElementById('loginError');
 
-            submitButton.disabled = true;
-            buttonText.textContent = 'Signing in...';
-            spinner.style.display = 'inline-block';
-            errorDiv.style.display = 'none';
+            submitButton.disabled     = true;
+            buttonText.textContent    = 'Signing in...';
+            spinner.style.display     = 'inline-block';
+            errorDiv.style.display    = 'none';
 
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
+            const email      = document.getElementById('loginEmail').value;
+            const password   = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
 
             try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
+                const response = await fetch('/api/auth/login', {
+                    method:      'POST',
+                    credentials: 'include',
+                    headers:     { 'Content-Type': 'application/json' },
+                    body:        JSON.stringify({ email, password, rememberMe }),
                 });
 
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Store JWT token
-                    localStorage.setItem('token', data.token);
-                    // Redirect to dashboard
                     window.location.href = 'dashboard.html';
                 } else {
-                    errorDiv.textContent = data.message || 'Invalid email or password';
+                    errorDiv.textContent   = data.error || 'Invalid email or password';
                     errorDiv.style.display = 'block';
-                    submitButton.disabled = false;
+                    submitButton.disabled  = false;
                     buttonText.textContent = 'Sign In';
-                    spinner.style.display = 'none';
+                    spinner.style.display  = 'none';
                 }
             } catch (err) {
                 console.error('Login error:', err);
-                errorDiv.textContent = 'An error occurred. Please try again.';
+                errorDiv.textContent   = 'An error occurred. Please try again.';
                 errorDiv.style.display = 'block';
-                submitButton.disabled = false;
+                submitButton.disabled  = false;
                 buttonText.textContent = 'Sign In';
-                spinner.style.display = 'none';
+                spinner.style.display  = 'none';
             }
         });
 
-        // Forgot password modal
         function showForgotPassword() {
             document.getElementById('forgotPasswordModal').style.display = 'flex';
         }
@@ -162,21 +158,16 @@
             document.getElementById('resetSuccess').style.display = 'none';
         }
 
-        // Handle forgot password form
         document.getElementById('forgotPasswordForm').addEventListener('submit', async (event) => {
             event.preventDefault();
-
             const email = document.getElementById('resetEmail').value;
-
             try {
-                const response = await fetch('/api/forgot-password', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email }),
+                const response = await fetch('/api/auth/forgot-password', {
+                    method:      'POST',
+                    credentials: 'include',
+                    headers:     { 'Content-Type': 'application/json' },
+                    body:        JSON.stringify({ email }),
                 });
-
                 if (response.ok) {
                     document.getElementById('forgotPasswordForm').style.display = 'none';
                     document.getElementById('resetSuccess').style.display = 'block';
@@ -188,12 +179,10 @@
         });
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.addEventListener('click', (event) => {
             const modal = document.getElementById('forgotPasswordModal');
-            if (event.target === modal) {
-                closeForgotPassword();
-            }
-        }
+            if (event.target === modal) closeForgotPassword();
+        });
     </script>
 </body>
 </html>
