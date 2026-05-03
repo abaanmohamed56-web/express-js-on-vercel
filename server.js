@@ -10,6 +10,8 @@ const cron = require('node-cron');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const stripeRoutes = require('./routes/stripe');
+const vipRoutes = require('./routes/vip');
+
 const cryptoRoutes = require('./routes/crypto');
 const bmlRoutes = require('./routes/bml');
 const webhookRoutes = require('./routes/webhooks');
@@ -71,6 +73,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/stripe', stripeRoutes);
 app.use('/api/crypto', cryptoRoutes);
 app.use('/api/bml', bmlRoutes);
+app.use('/api/vip', vipRoutes);
 
 // Root route
 app.get('/', (req, res) => {
