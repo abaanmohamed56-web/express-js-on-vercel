@@ -3,6 +3,7 @@
 Complete Node.js backend for the Skill Pips trading education platform with Stripe subscriptions, crypto payments, and Telegram bot integration.
 
 ## 🚀 Features
+.
 
 - ✅ User authentication (JWT)
 - ✅ Stripe payment processing & subscriptions
