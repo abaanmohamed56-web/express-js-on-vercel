@@ -1,257 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Skill Pips</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Skill Pips pricing — Gold Foundations, Execution Blueprint, VIP Room, and Everything Bundle. Choose the plan that fits your trading journey.">
+  <title>Pricing — Skill Pips</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <a href="index.html">
-                        <span class="logo-icon">📈</span>
-                        <span class="logo-text">SKILL PIPS</span>
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <a href="index.html#features">Features</a>
-                    <a href="index.html#testimonials">Success Stories</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="login.html" class="nav-login">Login</a>
-                </div>
-                <div class="mobile-menu-btn">☰</div>
-            </div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="logo">
+          <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="5" y="14" width="4" height="12" rx="1" fill="currentColor" opacity="0.4"/>
+            <rect x="5" y="10" width="4" height="6" rx="1" fill="currentColor"/>
+            <rect x="14" y="6" width="4" height="18" rx="1" fill="currentColor" opacity="0.4"/>
+            <rect x="14" y="2" width="4" height="8" rx="1" fill="currentColor"/>
+            <rect x="23" y="10" width="4" height="14" rx="1" fill="currentColor" opacity="0.4"/>
+            <rect x="23" y="18" width="4" height="6" rx="1" fill="#00FF88"/>
+          </svg>
+          <span class="logo-text">SKILL PIPS</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#testimonials">Success Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="login.html" class="nav-login">Login</a>
+          <a href="#" onclick="selectPlan('vip');return false;" class="btn-nav-cta">Join VIP</a>
         </div>
-    </nav>
 
-    <!-- Pricing Hero -->
-    <section class="pricing-hero">
-        <div class="container">
-            <h1>Choose Your Path to Mastery</h1>
-            <p>Flexible options designed for every stage of your trading journey</p>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── PRICING HERO ── -->
+  <section class="pricing-hero">
+    <div class="container">
+      <span class="section-label">Transparent Pricing</span>
+      <h1>Choose Your <span class="gradient-text">Path to Mastery</span></h1>
+      <p style="color:var(--text-muted);font-size:1.1rem;margin-top:12px;">Flexible options designed for every stage of your trading journey.</p>
+    </div>
+  </section>
+
+  <!-- ── PRICING SECTION ── -->
+  <section class="pricing-section">
+    <div class="container">
+
+      <!-- 2-column grid for individual plans + featured full-width -->
+      <div class="pricing-grid">
+
+        <!-- Card 1: Gold Foundations -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon-wrap gold">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Gold Foundations</h3>
+              <p class="pricing-desc">Master the fundamentals</p>
+            </div>
+          </div>
+
+          <div class="pricing-price">
+            <span class="price-amount">$14.80</span>
+            <span class="price-period">one-time payment</span>
+          </div>
+
+          <ul class="pricing-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Complete foundation course
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Risk management basics
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Trading psychology modules
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Market structure education
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Lifetime access
+            </li>
+          </ul>
+
+          <button class="btn-pricing" onclick="selectPlan('foundations')">Get Started</button>
         </div>
-    </section>
 
-    <!-- Pricing Cards -->
-    <section class="pricing-section">
-        <div class="container">
-            <!-- Individual Products -->
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <div class="pricing-icon">📚</div>
-                        <h3>Gold Foundations</h3>
-                        <p class="pricing-desc">Master the fundamentals</p>
-                    </div>
-                    <div class="pricing-price">
-                        <span class="price-amount">$14.80</span>
-                        <span class="price-period">one-time payment</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Complete foundation course</li>
-                        <li>✓ Risk management basics</li>
-                        <li>✓ Trading psychology modules</li>
-                        <li>✓ Market structure education</li>
-                        <li>✓ Lifetime access</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="selectPlan('foundations')">Get Started</button>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <div class="pricing-icon">🎯</div>
-                        <h3>Execution Blueprint</h3>
-                        <p class="pricing-desc">Advanced strategies</p>
-                    </div>
-                    <div class="pricing-price">
-                        <span class="price-amount">$45.00</span>
-                        <span class="price-period">one-time payment</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Professional execution tactics</li>
-                        <li>✓ Entry & exit strategies</li>
-                        <li>✓ Position sizing formulas</li>
-                        <li>✓ Trade management system</li>
-                        <li>✓ Lifetime access</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="selectPlan('blueprint')">Get Started</button>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <div class="pricing-icon">👑</div>
-                        <h3>VIP Execution Room</h3>
-                        <p class="pricing-desc">Exclusive community</p>
-                    </div>
-                    <div class="pricing-price">
-                        <span class="price-amount">$39</span>
-                        <span class="price-period">per month</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Private Telegram community</li>
-                        <li>✓ Daily market analysis</li>
-                        <li>✓ Live trade setups</li>
-                        <li>✓ Direct mentor support</li>
-                        <li>✓ Member networking</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="selectPlan('vip')">Start Membership</button>
-                </div>
+        <!-- Card 2: Execution Blueprint -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon-wrap cyan">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                <polyline points="16 7 22 7 22 13"/>
+              </svg>
             </div>
-
-            <!-- Bundle Offer -->
-            <div class="bundle-section">
-                <div class="bundle-card">
-                    <div class="bundle-badge">🔥 BEST VALUE - SAVE $29.80</div>
-                    <div class="bundle-content">
-                        <div class="bundle-left">
-                            <h2>Everything Bundle</h2>
-                            <p class="bundle-subtitle">Get all courses + VIP membership in one package</p>
-                            <ul class="bundle-includes">
-                                <li>✓ Gold Foundations Course ($14.80)</li>
-                                <li>✓ Execution Blueprint Course ($45.00)</li>
-                                <li>✓ VIP Execution Room Access ($39/mo)</li>
-                            </ul>
-                            <div class="bundle-value">
-                                <div class="original-price">Regular Price: $98.80</div>
-                                <div class="bundle-savings">You Save: $29.80 in first month</div>
-                            </div>
-                        </div>
-                        <div class="bundle-right">
-                            <div class="bundle-pricing">
-                                <div class="bundle-first-month">
-                                    <div class="bundle-label">First Month</div>
-                                    <div class="bundle-amount">$69</div>
-                                    <div class="bundle-details">All courses + VIP access</div>
-                                </div>
-                                <div class="bundle-arrow">→</div>
-                                <div class="bundle-recurring">
-                                    <div class="bundle-label">Then Monthly</div>
-                                    <div class="bundle-amount">$39</div>
-                                    <div class="bundle-details">VIP access continues</div>
-                                </div>
-                            </div>
-                            <button class="btn-bundle" onclick="selectPlan('bundle')">Get Everything Bundle</button>
-                            <p class="bundle-note">Cancel anytime. Courses are yours forever.</p>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <h3>Execution Blueprint</h3>
+              <p class="pricing-desc">Advanced strategies</p>
             </div>
+          </div>
 
-            <!-- Payment Methods -->
-            <div class="payment-methods">
-                <h3>Secure Payment Options</h3>
-                <div class="payment-options">
-                    <div class="payment-option">
-                        <div class="payment-icon">💳</div>
-                        <div class="payment-info">
-                            <h4>Credit & Debit Cards</h4>
-                            <p>Instant access • Secure by Stripe • Auto-renewal</p>
-                        </div>
-                    </div>
-                    <div class="payment-option">
-                        <div class="payment-icon">🪙</div>
-                        <div class="payment-info">
-                            <h4>Cryptocurrency (USDT)</h4>
-                            <p>TRC20 network • Manual renewal • Non-refundable</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="pricing-price">
+            <span class="price-amount">$45.00</span>
+            <span class="price-period">one-time payment</span>
+          </div>
 
-            <!-- FAQ -->
-            <div class="faq-section">
-                <h3>Frequently Asked Questions</h3>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4>Can I cancel anytime?</h4>
-                        <p>Yes, cancel anytime from your member dashboard. One-time course purchases are non-refundable as you get immediate access.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What happens after I pay?</h4>
-                        <p>You'll receive instant access to course materials and a Telegram invite link to join the VIP group within minutes.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Do I need trading experience?</h4>
-                        <p>No! Our Gold Foundations course starts from the basics. The VIP room welcomes all skill levels.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Is this financial advice?</h4>
-                        <p>No. All content is educational only. We do not provide financial advice or trading signals. See our full disclaimer.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>How does crypto payment work?</h4>
-                        <p>Pay with USDT on TRC20 network. Access granted after blockchain confirmation (usually 5-10 minutes). Manual renewal required monthly.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What if I have issues?</h4>
-                        <p>Contact support@skillpips.com or reach us on Telegram. We respond within 24 hours.</p>
-                    </div>
-                </div>
-            </div>
+          <ul class="pricing-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Professional execution tactics
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Entry &amp; exit strategies
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Position sizing formulas
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Trade management system
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Lifetime access
+            </li>
+          </ul>
+
+          <button class="btn-pricing" onclick="selectPlan('blueprint')">Get Started</button>
         </div>
-    </section>
 
-    <!-- Trust Section -->
-    <section class="trust-section">
-        <div class="container">
-            <div class="trust-content">
-                <h3>🛡️ Your Investment is Protected</h3>
-                <div class="trust-items">
-                    <div class="trust-item">✓ Secure Payment Processing</div>
-                    <div class="trust-item">✓ Instant Access Delivery</div>
-                    <div class="trust-item">✓ Educational Content Only</div>
-                    <div class="trust-item">✓ Cancel Anytime (VIP)</div>
+        <!-- Card 3: VIP Room — MOST POPULAR (full-width featured) -->
+        <div class="pricing-card featured-plan">
+          <div class="pricing-badge">Most Popular</div>
+
+          <div class="pricing-inner">
+            <div>
+              <div class="pricing-header" style="margin-bottom:20px;">
+                <div class="pricing-icon-wrap" style="background:rgba(108,71,255,0.15)">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
                 </div>
+                <div>
+                  <h3>VIP Execution Room</h3>
+                  <p class="pricing-desc">Exclusive live community</p>
+                </div>
+              </div>
+
+              <div class="pricing-price">
+                <span class="price-amount accent-price">$39</span>
+                <span class="price-period">per month &nbsp;&middot;&nbsp; cancel anytime</span>
+              </div>
+
+              <ul class="pricing-features" style="margin-top:20px;">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Private Telegram community
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Daily market analysis
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Live trade setups
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Direct mentor support
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Member networking
+                </li>
+              </ul>
             </div>
+
+            <div class="pricing-cta-col">
+              <button class="btn-primary btn-pricing-featured" style="width:100%;font-size:1rem;padding:15px 28px;" onclick="selectPlan('vip')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                Start Membership
+              </button>
+              <p style="color:var(--text-faint);font-size:0.78rem;text-align:center;margin-top:8px;">Instant access after payment</p>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <span class="logo-icon">📈</span>
-                        <span class="logo-text">SKILL PIPS</span>
-                    </div>
-                    <p>Professional trading education and execution strategies for serious traders.</p>
+        <!-- Card 4: Everything Bundle -->
+        <div class="pricing-card" style="grid-column:span 2;border-color:rgba(0,212,255,0.3);">
+          <div class="pricing-badge" style="background:linear-gradient(135deg,var(--cyan),var(--green));">Best Value — Save $29.80</div>
+
+          <div style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;">
+            <div>
+              <div class="pricing-header" style="margin-bottom:20px;">
+                <div class="pricing-icon-wrap green">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="login.html">Member Login</a></li>
-                    </ul>
+                <div>
+                  <h3>Everything Bundle</h3>
+                  <p class="pricing-desc">All courses + VIP membership in one package</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="disclaimer.html">Risk Disclaimer</a></li>
-                    </ul>
+              </div>
+
+              <div class="pricing-price" style="display:flex;align-items:baseline;gap:24px;flex-wrap:wrap;">
+                <div>
+                  <span class="price-amount" style="font-size:2.2rem;">$69</span>
+                  <span class="price-period">first month</span>
                 </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="mailto:support@skillpips.com">support@skillpips.com</a></li>
-                        <li><a href="https://t.me/skillpips">Telegram</a></li>
-                    </ul>
-                </div>
+                <div style="color:var(--text-faint);font-size:0.9rem;font-weight:500;">then $39/mo after</div>
+              </div>
+
+              <ul class="pricing-features" style="margin-top:20px;">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Gold Foundations Course ($14.80 value)
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Execution Blueprint Course ($45.00 value)
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  VIP Execution Room access ($39/mo)
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Courses yours forever — cancel VIP anytime
+                </li>
+              </ul>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Skill Pips. All rights reserved.</p>
-                <p class="disclaimer-text">Trading involves substantial risk of loss. Educational content only. Not financial advice.</p>
+
+            <div class="pricing-cta-col" style="min-width:200px;">
+              <button class="btn-primary" style="width:100%;font-size:1rem;padding:15px 28px;background:linear-gradient(135deg,var(--cyan),var(--green));" onclick="selectPlan('bundle')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                Get Everything Bundle
+              </button>
+              <p style="color:var(--text-faint);font-size:0.78rem;text-align:center;margin-top:8px;">Regular price: $98.80 — you save $29.80</p>
             </div>
+          </div>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+      </div><!-- /pricing-grid -->
+
+      <!-- Risk Disclaimer -->
+      <p class="risk-disclaimer">
+        <strong>Risk Disclaimer:</strong> All content provided by Skill Pips is for educational purposes only and does not constitute financial advice, investment advice, or trading advice of any kind. Trading foreign exchange, commodities, and other financial instruments on margin carries a high level of risk and may not be suitable for all investors. Past educational examples are not indicative of future results. You should carefully consider your investment objectives, level of experience, and risk appetite before subscribing. Skill Pips is not a licensed financial advisor or broker. See our full <a href="disclaimer.html" style="color:var(--accent)">Risk Disclaimer</a> for details.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:var(--accent)" aria-hidden="true">
+              <rect x="5" y="14" width="4" height="12" rx="1" fill="currentColor" opacity="0.4"/>
+              <rect x="5" y="10" width="4" height="6" rx="1" fill="currentColor"/>
+              <rect x="14" y="6" width="4" height="18" rx="1" fill="currentColor" opacity="0.4"/>
+              <rect x="14" y="2" width="4" height="8" rx="1" fill="currentColor"/>
+              <rect x="23" y="10" width="4" height="14" rx="1" fill="currentColor" opacity="0.4"/>
+              <rect x="23" y="18" width="4" height="6" rx="1" fill="#00FF88"/>
+            </svg>
+            <span class="logo-text">SKILL PIPS</span>
+          </div>
+          <p>Professional trading education and execution strategies for serious traders.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="login.html">Member Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="disclaimer.html">Risk Disclaimer</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="mailto:support@skillpips.com">support@skillpips.com</a></li>
+            <li><a href="https://t.me/skillpips" target="_blank" rel="noopener">Telegram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Skill Pips. All rights reserved.</p>
+        <p class="disclaimer-text">Trading involves substantial risk of loss. Educational content only. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+  <script>
+    // Mobile nav
+    (function () {
+      const btn = document.getElementById('mobileMenuBtn');
+      const nav = document.getElementById('navLinks');
+      if (btn && nav) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const open = nav.classList.toggle('active');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        document.addEventListener('click', function (e) {
+          if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== btn) {
+            nav.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    })();
+
+    // Fix featured-plan responsive layout on mobile
+    (function () {
+      function fixBundleLayout() {
+        const bundleInner = document.querySelector('.pricing-card:last-child > div[style*="grid-template-columns"]');
+        if (bundleInner) {
+          if (window.innerWidth <= 768) {
+            bundleInner.style.gridTemplateColumns = '1fr';
+          } else {
+            bundleInner.style.gridTemplateColumns = '1fr auto';
+          }
+        }
+        const vipInner = document.querySelector('.pricing-card.featured-plan .pricing-inner');
+        if (vipInner) {
+          if (window.innerWidth <= 768) {
+            vipInner.style.gridTemplateColumns = '1fr';
+          } else {
+            vipInner.style.gridTemplateColumns = '1fr auto';
+          }
+        }
+        // bundle card span
+        const bundleCard = document.querySelector('.pricing-grid .pricing-card:last-child');
+        if (bundleCard) {
+          bundleCard.style.gridColumn = window.innerWidth <= 768 ? 'span 1' : 'span 2';
+        }
+      }
+      fixBundleLayout();
+      window.addEventListener('resize', fixBundleLayout);
+    })();
+  </script>
+
 </body>
 </html>

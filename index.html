@@ -1,230 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Pips - Master Trading Execution</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Master trading execution with Skill Pips. Join the VIP Room, access Gold Foundations and Execution Blueprint courses. Elite trading education.">
+  <title>Skill Pips — Master Trading Execution</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <span class="logo-icon">📈</span>
-                    <span class="logo-text">SKILL PIPS</span>
-                </div>
-                <div class="nav-links">
-                    <a href="#features">Features</a>
-                    <a href="#testimonials">Success Stories</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="login.html" class="nav-login">Login</a>
-                    <a href="pricing.html" class="btn-primary">Join VIP</a>
-                </div>
-                <div class="mobile-menu-btn">☰</div>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">🔥 Elite Trading Community</div>
-                <h1 class="hero-title">Master Trading Execution<br>Join The <span class="gradient-text">VIP Room</span></h1>
-                <p class="hero-subtitle">Get access to proven strategies, live market analysis, and a community of serious traders. Transform your trading game with professional execution methods.</p>
-                <div class="hero-cta">
-                    <a href="pricing.html" class="btn-hero">Start Your Journey</a>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Active Members</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">95%</div>
-                            <div class="stat-label">Success Rate</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="trust-badges">
-                    <div class="badge-item">✓ Educational Content Only</div>
-                    <div class="badge-item">✓ No Financial Advice</div>
-                    <div class="badge-item">✓ Risk Disclosure Provided</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="logo">
+          <!-- SVG logo mark: mini candlestick chart -->
+          <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="5" y="14" width="4" height="12" rx="1" fill="currentColor" opacity="0.4"/>
+            <rect x="5" y="10" width="4" height="6" rx="1" fill="currentColor"/>
+            <rect x="14" y="6" width="4" height="18" rx="1" fill="currentColor" opacity="0.4"/>
+            <rect x="14" y="2" width="4" height="8" rx="1" fill="currentColor"/>
+            <rect x="23" y="10" width="4" height="14" rx="1" fill="currentColor" opacity="0.4"/>
+            <rect x="23" y="18" width="4" height="6" rx="1" fill="#00FF88"/>
+          </svg>
+          <span class="logo-text">SKILL PIPS</span>
+        </a>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>What You'll Get Inside</h2>
-                <p>Everything you need to execute like a professional trader</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Gold Foundations</h3>
-                    <p>Master the fundamentals with our comprehensive trading foundation course. Learn risk management, psychology, and market structure.</p>
-                    <div class="feature-price">$14.80 <span>one-time</span></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Execution Blueprint</h3>
-                    <p>Advanced execution strategies used by professional traders. Entry timing, position sizing, and exit strategies.</p>
-                    <div class="feature-price">$45.00 <span>one-time</span></div>
-                </div>
-                <div class="feature-card featured">
-                    <div class="featured-badge">MOST POPULAR</div>
-                    <div class="feature-icon">👑</div>
-                    <h3>VIP Execution Room</h3>
-                    <p>Exclusive Telegram community with daily market analysis, live trade ideas, and direct support from experienced traders.</p>
-                    <div class="feature-price">$39/mo <span>recurring</span></div>
-                    <ul class="feature-benefits">
-                        <li>✓ Daily market analysis</li>
-                        <li>✓ Live trade setups</li>
-                        <li>✓ Private community access</li>
-                        <li>✓ Direct mentor support</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#testimonials">Success Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="login.html" class="nav-login">Login</a>
+          <a href="pricing.html" class="btn-nav-cta">Join VIP</a>
         </div>
-    </section>
 
-    <!-- Value Proposition -->
-    <section class="value-prop">
-        <div class="container">
-            <div class="value-content">
-                <h2>Why Skill Pips?</h2>
-                <div class="value-grid">
-                    <div class="value-item">
-                        <div class="value-icon">🎓</div>
-                        <h3>Educational Excellence</h3>
-                        <p>Structured learning path from beginner to advanced execution strategies.</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">💬</div>
-                        <h3>Active Community</h3>
-                        <p>Connect with serious traders who share insights, strategies, and market analysis daily.</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">📊</div>
-                        <h3>Real-Time Analysis</h3>
-                        <p>Get live market breakdowns and trade setups as opportunities develop.</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">🛡️</div>
-                        <h3>Risk Management Focus</h3>
-                        <p>Learn to protect your capital with professional risk management techniques.</p>
-                    </div>
-                </div>
-            </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <!-- Live chart background -->
+    <div id="chart-bg"></div>
+    <!-- Gradient overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Content -->
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="hero-badge">
+          <!-- star icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Elite Trading Education
         </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Our Members Say</h2>
-                <p>Real results from real traders</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"The VIP room completely changed how I approach trading. The execution strategies are gold. Finally profitable after years of struggle."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
-                        <div class="author-info">
-                            <div class="author-name">Marcus T.</div>
-                            <div class="author-role">Member since 2024</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Best trading community I've been part of. The daily analysis helps me spot setups I would've missed. Worth every penny."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-role">Member since 2024</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"The Execution Blueprint course is packed with value. I learned more in 2 weeks than I did in 2 years on my own."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-role">Member since 2025</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <h1 class="hero-title">
+          Master Trading Execution<br>
+          Join The <span class="gradient-text">VIP Room</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Get access to proven execution strategies, live market analysis, and a community of serious traders committed to consistent performance.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="pricing.html" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Join VIP Now
+          </a>
+          <a href="#features" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            Watch Demo
+          </a>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Level Up Your Trading?</h2>
-                <p>Join hundreds of traders who are mastering execution strategies</p>
-                <a href="pricing.html" class="btn-hero">View Pricing & Join Now</a>
-                <div class="cta-guarantee">
-                    <p>✓ Instant access to VIP community • ✓ Educational resources only • ✓ No financial advice given</p>
-                </div>
-            </div>
+        <!-- Stats row -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Members</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Satisfaction</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Courses</div>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <span class="logo-icon">📈</span>
-                        <span class="logo-text">SKILL PIPS</span>
-                    </div>
-                    <p>Professional trading education and execution strategies for serious traders.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="login.html">Member Login</a></li>
-                        <li><a href="#features">Features</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="disclaimer.html">Risk Disclaimer</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="mailto:support@skillpips.com">support@skillpips.com</a></li>
-                        <li><a href="https://t.me/skillpips">Telegram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Skill Pips. All rights reserved.</p>
-                <p class="disclaimer-text">Trading involves substantial risk of loss. Educational content only. Not financial advice.</p>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">What You Get</span>
+        <h2>Everything You Need To Execute</h2>
+        <p>Three tiers of knowledge designed to take you from foundations to elite execution.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <!-- Card 1: Gold Foundations -->
+        <div class="feature-card">
+          <svg class="feature-icon gold" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <h3>Gold Foundations</h3>
+          <p>Master the fundamentals with our comprehensive trading foundation course. Risk management, psychology, and market structure built to last.</p>
+          <div class="feature-price">$14.80 <span>one-time</span></div>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <!-- Card 2: Execution Blueprint -->
+        <div class="feature-card">
+          <svg class="feature-icon cyan" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <h3>Execution Blueprint</h3>
+          <p>Advanced execution strategies used by professional traders. Entry timing, position sizing, and exit strategies refined for real markets.</p>
+          <div class="feature-price">$45.00 <span>one-time</span></div>
+        </div>
+
+        <!-- Card 3: VIP Room (featured) -->
+        <div class="feature-card featured">
+          <div class="featured-badge">Most Popular</div>
+          <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <h3>VIP Execution Room</h3>
+          <p>Exclusive Telegram community with daily market analysis, live trade ideas, and direct support from experienced traders.</p>
+          <div class="feature-price">$39<span style="font-size:0.55em">/mo</span> <span>recurring</span></div>
+          <ul class="feature-benefits">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Daily market analysis
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Live trade setups
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Private community access
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Direct mentor support
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section id="how-it-works" class="value-prop">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Simple Process</span>
+        <h2>How It Works</h2>
+        <p>Three steps from sign-up to executing like a professional trader.</p>
+      </div>
+
+      <div class="value-grid">
+
+        <div class="value-item">
+          <div class="step-number">1</div>
+          <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <h3>Join</h3>
+          <p>Choose your plan and get instant access to your chosen courses and VIP community within minutes of purchase.</p>
+        </div>
+
+        <div class="value-item">
+          <div class="step-number">2</div>
+          <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          <h3>Learn</h3>
+          <p>Work through structured course material at your own pace. Foundation to advanced execution — all in one place.</p>
+        </div>
+
+        <div class="value-item">
+          <div class="step-number">3</div>
+          <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+          <h3>Execute</h3>
+          <p>Apply professional execution methods in real markets. Track your growth and refine your edge with community support.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Member Stories</span>
+        <h2>What Our Members Say</h2>
+        <p>Real feedback from real traders inside the VIP Room.</p>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"The VIP room completely changed how I approach trading. The execution strategies are gold. Finally profitable after years of struggle."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <div class="author-name">Marcus T.</div>
+              <div class="author-role">Member since 2024</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"Best trading community I've been part of. The daily analysis helps me spot setups I would've missed. Worth every penny."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <div class="author-name">Sarah K.</div>
+              <div class="author-role">Member since 2024</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"The Execution Blueprint course is packed with value. I learned more in 2 weeks than I did in 2 years of trading on my own."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">J</div>
+            <div>
+              <div class="author-name">James R.</div>
+              <div class="author-role">Member since 2025</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Level Up Your Trading?</h2>
+        <p>Join hundreds of traders mastering professional execution strategies inside the VIP Room.</p>
+        <a href="pricing.html" class="btn-primary" style="font-size:1.05rem;padding:15px 36px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          View Pricing &amp; Join Now
+        </a>
+        <p class="cta-guarantee">Educational content only &nbsp;&middot;&nbsp; No financial advice given &nbsp;&middot;&nbsp; Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:var(--accent)" aria-hidden="true">
+              <rect x="5" y="14" width="4" height="12" rx="1" fill="currentColor" opacity="0.4"/>
+              <rect x="5" y="10" width="4" height="6" rx="1" fill="currentColor"/>
+              <rect x="14" y="6" width="4" height="18" rx="1" fill="currentColor" opacity="0.4"/>
+              <rect x="14" y="2" width="4" height="8" rx="1" fill="currentColor"/>
+              <rect x="23" y="10" width="4" height="14" rx="1" fill="currentColor" opacity="0.4"/>
+              <rect x="23" y="18" width="4" height="6" rx="1" fill="#00FF88"/>
+            </svg>
+            <span class="logo-text">SKILL PIPS</span>
+          </div>
+          <p>Professional trading education and execution strategies for serious traders.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="login.html">Member Login</a></li>
+            <li><a href="#features">Features</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="disclaimer.html">Risk Disclaimer</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="mailto:support@skillpips.com">support@skillpips.com</a></li>
+            <li><a href="https://t.me/skillpips" target="_blank" rel="noopener">Telegram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Skill Pips. All rights reserved.</p>
+        <p class="disclaimer-text">Trading involves substantial risk of loss. Educational content only. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="script.js" defer></script>
+
+  <!-- TradingView Lightweight Charts live animated candlestick background -->
+  <script>
+    (function () {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js';
+      script.onload = function () {
+        const el = document.getElementById('chart-bg');
+        if (!el) return;
+        const chart = LightweightCharts.createChart(el, {
+          width: el.offsetWidth,
+          height: el.offsetHeight,
+          layout: { background: { color: 'transparent' }, textColor: 'rgba(255,255,255,0)' },
+          grid: { vertLines: { color: 'rgba(255,255,255,0.03)' }, horzLines: { color: 'rgba(255,255,255,0.03)' } },
+          crosshair: { mode: 0 },
+          rightPriceScale: { visible: false },
+          timeScale: { visible: false },
+          handleScroll: false,
+          handleScale: false,
+        });
+        const series = chart.addCandlestickSeries({
+          upColor: '#00FF88', downColor: '#FF4D6D',
+          borderUpColor: '#00FF88', borderDownColor: '#FF4D6D',
+          wickUpColor: '#00FF8866', wickDownColor: '#FF4D6D66',
+        });
+
+        // Generate 120 realistic candles
+        const candles = [];
+        let price = 1.08450;
+        const now = Math.floor(Date.now() / 1000);
+        for (let i = 119; i >= 0; i--) {
+          const open = price;
+          const change = (Math.random() - 0.48) * 0.00120;
+          const close = open + change;
+          const high = Math.max(open, close) + Math.random() * 0.00060;
+          const low  = Math.min(open, close) - Math.random() * 0.00060;
+          candles.push({ time: now - i * 60, open, high, low, close: parseFloat(close.toFixed(5)) });
+          price = close;
+        }
+        series.setData(candles);
+        chart.timeScale().fitContent();
+
+        // Add a new candle every 2s
+        let last = candles[candles.length - 1];
+        setInterval(function () {
+          const open = last.close;
+          const change = (Math.random() - 0.48) * 0.00120;
+          const close = parseFloat((open + change).toFixed(5));
+          const high  = Math.max(open, close) + Math.random() * 0.00060;
+          const low   = Math.min(open, close) - Math.random() * 0.00060;
+          last = { time: last.time + 60, open, high, low, close };
+          series.update(last);
+        }, 2000);
+
+        window.addEventListener('resize', function () {
+          chart.applyOptions({ width: el.offsetWidth, height: el.offsetHeight });
+        });
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+
 </body>
 </html>
