@@ -4,6 +4,7 @@ const cors       = require('cors');
 const helmet     = require('helmet');
 const cookieParser = require('cookie-parser');
 const rateLimit  = require('express-rate-limit');
+const path       = require('path');
 
 const app = express();
 
@@ -32,6 +33,9 @@ const apiLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
+
+// Serve redesigned frontend from public/ folder
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Webhooks must come before body parsing (raw body needed for signature checks)
 app.use('/api/webhooks', require('../routes/webhooks'));
